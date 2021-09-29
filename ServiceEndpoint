@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: HelloWorld.py
+spec:
+  selector:
+    app: HelloWorld.py
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9376
