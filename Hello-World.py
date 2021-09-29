@@ -1,0 +1,2 @@
+var="HelloWorld"
+print(var)
