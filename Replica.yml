@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: HelloWorld
+  namespace: 
+  labels:
+    app: HelloWorld
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: HelloWorld
+  template:
+    metadata:
+      labels:
+        app: HelloWorld
+    spec:
+      containers:
+      - name: HelloWorld
+        image: <your_image>
+        ports:
+        - containerPort: 80
+        env:
+        - name: spring.config.location
+          value: application.properties
+       
