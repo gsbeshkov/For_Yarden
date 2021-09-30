@@ -1,26 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: HelloWorld
-  namespace: 
-  labels:
-    app: HelloWorld
+name: pythontest
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: HelloWorld
-  template:
-    metadata:
-      labels:
-        app: HelloWorld
-    spec:
-      containers:
-      - name: HelloWorld
-        image: <your_image>
-        ports:
-        - containerPort: 80
-        env:
-        - name: spring.config.location
-          value: application.properties
-       
+replicas: 2
+selector:
+matchLabels:
+app: pythontest
+strategy:
+type: Recreate
+template:
+metadata:
+labels:
+app: pythontest
+containers:
+- image: localhost:5000/pythontest
+imagePullPolicy: IfNotPresent
+name: pythontest
+command: ["python"]
+args: ["./helloworld.py"]
+env:
+- name: CONTAINER_PYTHON_VAR
+value: "Echo string from kubernetes"
+ports:
+- containerPort: 31313
+name: pythontest
